@@ -4,18 +4,32 @@
  * You'll have to figure out a way to export this function from
  * this file and include it in basic-server.js so that it actually works.
  * *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html. */
-
 module.exports = function(request, response) {
   /* the 'request' argument comes from nodes http module. It includes info about the
   request - such as what URL the browser is requesting. */
 
   /* Documentation for both request and response can be found at
    * http://nodemanual.org/0.8.14/nodejs_ref_guide/http.html */
-  console.log(request);
 
   console.log("Serving request type " + request.method + " for url " + request.url);
+  var result;
+  var statusCode;
 
-  var statusCode = 200;
+  if (request.method === "GET"){
+    result = JSON.stringify({results: []});
+    statusCode = 200;
+
+    // if ("cccccc") {
+    //   statusCode = 200;
+    // } else {
+    //   statusCode = 404;
+    // }
+
+  } else if (request.method === "POST"){
+    statusCode = 201;
+  }
+
+
 
   /* Without this line, this server wouldn't work. See the note
    * below about CORS. */
@@ -30,10 +44,8 @@ module.exports = function(request, response) {
    * anything back to the client until you do. The string you pass to
    * response.end() will be the body of the response - i.e. what shows
    * up in the browser.*/
-  //response.end(request);
-  //response.x = JSON.stringify(request);
-  //console.log(x);
-  response.end("Hello World!");
+
+  response.end(result);
 
 };
 

@@ -65,7 +65,7 @@ describe('Node Server Request Listener Function', function() {
     var req = new stubs.request('/classes/room1', 'POST', stubMsg);
     var res = new stubs.response();
 
-    handler.handler(req, res);
+    handler(req, res);
 
     // Expect 201 Created response status
     expect(res._responseCode).to.equal(201);
@@ -84,7 +84,7 @@ it('Should respond with messages that were previously posted', function() {
     var req = new stubs.request('/classes/room1', 'POST', stubMsg);
     var res = new stubs.response();
 
-    handler.handler(req, res);
+    handler(req, res);
 
     expect(res._responseCode).to.equal(201);
 
@@ -92,7 +92,7 @@ it('Should respond with messages that were previously posted', function() {
     req = new stubs.request('/classes/room1', 'GET');
     res = new stubs.response();
 
-    handler.handler(req, res);
+    handler(req, res);
 
     expect(res._responseCode).to.equal(200);
     var messages = JSON.parse(res._data).results;
