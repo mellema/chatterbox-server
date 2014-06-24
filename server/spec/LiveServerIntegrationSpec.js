@@ -47,19 +47,24 @@ describe('Live Node Chat Server', function() {
       done();
     });
   });
-
+  //*******************************************************//
   it('Should respond with messages that were previously posted', function(done) {
     var requestParams = {method: 'POST',
       uri: 'http://127.0.0.1:3000/classes/messages',
       json: {
         username: 'Jono',
-        message: 'Do my bidding!'}
+        message: 'Do my bidding!====================================>>'}
     };
 
     request(requestParams, function(error, response, body) {
+
       // Now if we request the log, that message we posted should be there:
       request('http://127.0.0.1:3000/classes/messages', function(error, response, body) {
+      console.log("***//***//**  check : ", body)
+      console.log("***//***//**  check response body: ", response.body)
+      console.log("***-----------------------------------------------***");
           var messages = JSON.parse(body).results;
+          console.log(messages);
           expect(messages[0].username).to.equal('Jono');
           expect(messages[0].message).to.equal('Do my bidding!');
           done();
