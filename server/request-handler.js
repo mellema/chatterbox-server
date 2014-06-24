@@ -17,6 +17,7 @@ module.exports = function(request, response) {
 
   if (request.method === "GET"){
     result = JSON.stringify({results: []});
+    debugger;
     statusCode = 200;
 
     // if ("cccccc") {

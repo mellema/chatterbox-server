@@ -18,7 +18,7 @@ describe('Node Server Request Listener Function', function() {
     var req = new stubs.request('/classes/room1', 'GET');
     var res = new stubs.response();
 
-    handler.handler(req, res);
+    handler(req, res);
 
     expect(res._responseCode).to.equal(200);
     expect(res._ended).to.equal(true);
@@ -28,7 +28,7 @@ describe('Node Server Request Listener Function', function() {
     var req = new stubs.request('/classes/room1', 'GET');
     var res = new stubs.response();
 
-    handler.handler(req, res);
+    handler(req, res);
 
     expect(JSON.parse.bind(this, res._data)).to.not.throw();
     expect(res._ended).to.equal(true);
@@ -38,7 +38,7 @@ describe('Node Server Request Listener Function', function() {
     var req = new stubs.request('/classes/room1', 'GET');
     var res = new stubs.response();
 
-    handler.handler(req, res);
+    handler(req, res);
 
     var parsedBody = JSON.parse(res._data);
     expect(parsedBody).to.be.an('object');
@@ -49,7 +49,7 @@ describe('Node Server Request Listener Function', function() {
     var req = new stubs.request('/classes/room1', 'GET');
     var res = new stubs.response();
 
-    handler.handler(req, res);
+    handler(req, res);
 
     var parsedBody = JSON.parse(res._data);
     expect(parsedBody).to.have.property('results');
@@ -62,6 +62,7 @@ describe('Node Server Request Listener Function', function() {
       username: 'Jono',
       message: 'Do my bidding!'
     };
+    debugger
     var req = new stubs.request('/classes/room1', 'POST', stubMsg);
     var res = new stubs.response();
 
@@ -107,7 +108,7 @@ it('Should respond with messages that were previously posted', function() {
     var req = new stubs.request('/arglebargle', 'GET');
     var res = new stubs.response();
 
-    handler.handler(req, res);
+    handler(req, res);
 
     // Wait for response to return and then check status code
     waitForThen(
